@@ -105,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            animator.Play("Jump");
             rigidbody2D.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             isGrounded = false;
 
@@ -153,6 +154,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag(GROUND_TAG))
         {
             isGrounded = true;
+           
             Debug.Log("Player is grounded!");
         }
     }
