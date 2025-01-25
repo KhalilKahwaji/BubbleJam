@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rigidbody2D.gravityScale *= -1;
             jumpForce *= -1;
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x + 180, 0, 0);
+            transform.Rotate(new Vector3(180, 0, 0));
         }
     }
 
