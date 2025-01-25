@@ -44,6 +44,16 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void GravitySwitch()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            rigidbody2D.gravityScale *= -1;
+            jumpForce *= -1;
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x + 180, 0, 0);
+        }
+    }
+
     void PlayerJump()
     {
 
@@ -66,8 +76,10 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerMovementKeyboard();
         PlayerJump();
-      
-        transform.eulerAngles = new Vector3(0, 0, 0);
+        GravitySwitch();
+
+        //Vector3 currentRotation = transform.eulerAngles;
+        //transform.eulerAngles = new Vector3(currentRotation.x, 0, 0);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
