@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float abilityPower = 10f;
     public float jumpForce = 7f;
 
+    private Animator animator;
     private Rigidbody2D rigidbody2D;
     private SpriteRenderer sp;
 
@@ -51,6 +52,12 @@ public class PlayerMovement : MonoBehaviour
             rigidbody2D.gravityScale *= -1;
             jumpForce *= -1;
             transform.Rotate(new Vector3(180, 0, 0));
+
+            if(rigidbody2D.gravityScale == -1)
+            {
+               animator.StopPlayback();
+               animator.Play("gravitySwap");
+            }
         }
     }
 
@@ -69,9 +76,9 @@ public class PlayerMovement : MonoBehaviour
     {
         sp = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         PlayerMovementKeyboard();
