@@ -17,6 +17,12 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rigidbody2D;
     private SpriteRenderer sp;
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip[] audios;
+    public AudioClip bubbleBlow;
+    public AudioClip bubblePop;
 
     public bool isGrounded = true;
     public float activateBubbleDelay = 1f;
@@ -71,10 +77,14 @@ public class PlayerMovement : MonoBehaviour
             jumpForce *= -1;
             transform.Rotate(new Vector3(180, 0, 0));
 
-            if(rigidbody2D.gravityScale == -1)
+            if(rigidbody2D.gravityScale < 0)
             {
                animator.StopPlayback();
                animator.Play("gravitySwap");
+
+               audioSource.clip = bubbleBlow;
+               audioSource.Play();
+
                StartCoroutine(ActivateBubble());
             }
             else
@@ -83,6 +93,9 @@ public class PlayerMovement : MonoBehaviour
                 transform.GetChild(0).gameObject.SetActive(false);
                 animator.StopPlayback();
                 animator.Play("bubblePop");
+
+                audioSource.clip = bubblePop;
+                audioSource.Play();
             }
         }
     }
@@ -94,6 +107,10 @@ public class PlayerMovement : MonoBehaviour
         {
             rigidbody2D.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             isGrounded = false;
+
+            int randomAC_Index = UnityEngine.Random.Range(0, audios.Length);
+            audioSource.clip = audios[randomAC_Index];
+            audioSource.Play();
         }
 
     }
@@ -116,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
         sp = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = transform.GetComponent<AudioSource>();
     }
 
     void Update()
