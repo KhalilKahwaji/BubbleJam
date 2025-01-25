@@ -19,7 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sp;
 
     public bool isGrounded = true;
-
+    public float activateBubbleDelay = 1f;
+    public bool isWalking = false;
 
     void PlayerMovementKeyboard()
     {
@@ -35,16 +36,33 @@ public class PlayerMovement : MonoBehaviour
         if (direction > 0)
         {
             sp.flipX = false;
+            isWalking = true;
         }
         else if (direction < 0)
         {
             sp.flipX = true;
+            isWalking = true;
+        }
+        else
+        {
+            isWalking = false;
         }
 
         transform.position += new Vector3(direction, 0f, 0f) * (speed * Time.deltaTime);
 
     }
 
+    IEnumerator ActivateBubble()
+    {
+        yield return new WaitForSeconds(activateBubbleDelay);
+
+        Transform firstChild = transform.GetChild(0);
+        if (firstChild != null)
+        {
+            if(rigidbody2D.gravityScale < 0)
+                firstChild.gameObject.SetActive(true);
+        }
+    }
     void GravitySwitch()
     {
         if (Input.GetKeyDown(KeyCode.Q))
@@ -57,6 +75,14 @@ public class PlayerMovement : MonoBehaviour
             {
                animator.StopPlayback();
                animator.Play("gravitySwap");
+               StartCoroutine(ActivateBubble());
+            }
+            else
+            {
+                animator.StopPlayback();
+                transform.GetChild(0).gameObject.SetActive(false);
+                animator.StopPlayback();
+                animator.Play("bubblePop");
             }
         }
     }
@@ -72,6 +98,19 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+
+    void AnimatePlayer()
+    {
+        if(isWalking)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
+    }
+
     void Start()
     {
         sp = GetComponent<SpriteRenderer>();
@@ -84,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerMovementKeyboard();
         PlayerJump();
         GravitySwitch();
+        AnimatePlayer();
 
         //Vector3 currentRotation = transform.eulerAngles;
         //transform.eulerAngles = new Vector3(currentRotation.x, 0, 0);
