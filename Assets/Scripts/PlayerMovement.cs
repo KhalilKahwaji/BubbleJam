@@ -139,9 +139,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        PlayerMovementKeyboard();
-        PlayerJump();
-        GravitySwitch();
+        if (!PlayerHealth.dead)
+        {
+            PlayerMovementKeyboard();
+            PlayerJump();
+            GravitySwitch();
+
+        }
+
         AnimatePlayer();
 
         Quaternion fixedRotation = transform.rotation;

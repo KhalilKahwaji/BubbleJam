@@ -1,3 +1,4 @@
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class AudioManagerScript : MonoBehaviour
@@ -21,8 +22,6 @@ public class AudioManagerScript : MonoBehaviour
     }
     private void Start()
     {
-     
-
         audioSource = GetComponent<AudioSource>();
     }
     public enum Audio_Ids

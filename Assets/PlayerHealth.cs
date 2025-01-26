@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public float health = 3f;
     public GameObject[] hearts;
 
+    public static bool dead = false;
     public GameObject deathMenu;
 
     private bool immune = false;
@@ -15,20 +16,32 @@ public class PlayerHealth : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sp;
     private Animator animator;
+
+    public AudioSource audiosource;
+    public AudioClip clip;
+
     const string ENEMY = "Enemy";
     void Start()
     {
         animator= GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sp =  GetComponent<SpriteRenderer>();
+        audiosource = GetComponent<AudioSource>();
     }
-
-    void DeathScenario()
+    private IEnumerator WaitForSeconds(float time)
     {
-        //PauseController.GlobalPauseGame();
+        yield return new WaitForSeconds(time);
+    }
+    private IEnumerator DeathScenario()
+    {
+        dead = true;
         animator.Play("death");
-        WaitAfterHit(3000f);
         AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.LOSE_TRACK);
+        yield return new WaitForSeconds(2.5f);
+
+
+        transform.GetChild(0).gameObject.SetActive(true);
+
         deathMenu.SetActive(true);
     }
     IEnumerator WaitAfterHit(float time)
@@ -55,7 +68,7 @@ public class PlayerHealth : MonoBehaviour
             }
             if (health == 0)
             {
-               DeathScenario();
+              StartCoroutine(DeathScenario());
             }
                 
 
