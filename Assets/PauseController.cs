@@ -24,6 +24,10 @@ public class PauseController : MonoBehaviour
         pauseButton.enabled = false;
     }
 
+    public static void GlobalPauseGame()
+    {
+        Time.timeScale = 0f;
+    }
     public void ResumeGame()
     {
         gameIsPaused = false;
@@ -62,6 +66,15 @@ public class PauseController : MonoBehaviour
         {
             SceneManager.LoadScene(nextInd);
         }*/
+    }
+
+    public void ExitGame()
+    { 
+        Application.Quit();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
 }//class
