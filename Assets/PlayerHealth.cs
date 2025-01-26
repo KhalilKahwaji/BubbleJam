@@ -56,6 +56,11 @@ public class PlayerHealth : MonoBehaviour
             if (health > 0 && health <= hearts.Length && !immune)
             {
                 hearts[(int)(health - 1)].SetActive(false);
+
+                audiosource.Stop();
+                audiosource.clip = clip;
+                audiosource.Play();
+
                 immune = true;
 
                 animator.Play("Damaged");

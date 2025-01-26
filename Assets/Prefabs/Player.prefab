@@ -227,7 +227,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -331,7 +331,7 @@ MonoBehaviour:
   - {fileID: 0}
   deathMenu: {fileID: 0}
   audiosource: {fileID: 0}
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: c31b07d3232f27745aaec26159c00978, type: 3}
 --- !u!1 &5875127812024150460
 GameObject:
   m_ObjectHideFlags: 0
