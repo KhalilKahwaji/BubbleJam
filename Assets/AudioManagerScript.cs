@@ -39,4 +39,9 @@ public class AudioManagerScript : MonoBehaviour
         audioSource.clip = clips[(int)id];
         audioSource.Play();
     }
+    public void StopTrack()
+    {
+        audioSource.Stop();
+    }
+
 }

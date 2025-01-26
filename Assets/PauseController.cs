@@ -53,8 +53,12 @@ public class PauseController : MonoBehaviour
 
     public void LoadLevel(int level)
     {
-        AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.MAIN_TRACK);
-        SceneManager.LoadScene("Level" + level);
+        if (level != 4)
+            AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.MAIN_TRACK);
+        else
+            AudioManagerScript.INSTANCE.StopTrack();
+
+       SceneManager.LoadScene("Level" + level);
     }
 
     public void NextLevel()
@@ -62,14 +66,7 @@ public class PauseController : MonoBehaviour
         AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.MAIN_TRACK);
         string curScene = SceneManager.GetActiveScene().name;
         int nextInd = SceneManager.GetActiveScene().buildIndex + 1;
-        /*if (curScene == TagsEnum.Instance.ns_scene_level04)
-        {
-            SceneManager.LoadScene(TagsEnum.Instance.ns_scene_level00);
-        }
-        else
-        {
-            SceneManager.LoadScene(nextInd);
-        }*/
+
     }
 
     public void ExitGame()
