@@ -39,6 +39,7 @@ public class PauseController : MonoBehaviour
 
     public void RestartGame()
     {
+        TrophyScript.winning = false;
         PlayerHealth.dead = false;
         Time.timeScale = 1f;
         AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.MAIN_TRACK);
@@ -48,6 +49,7 @@ public class PauseController : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        TrophyScript.winning = false;
         Time.timeScale = 1f;
         PlayerHealth.dead = false;
         AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.MAIN_MENU_TRACK);
@@ -57,6 +59,7 @@ public class PauseController : MonoBehaviour
 
     public void LoadLevel(int level)
     {
+        TrophyScript.winning = false;
         PlayerHealth.dead = false;
         Time.timeScale = 1f;
 

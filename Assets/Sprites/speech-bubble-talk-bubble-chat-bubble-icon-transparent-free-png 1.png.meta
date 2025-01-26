@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      speech-bubble-talk-bubble-chat-bubble-icon-transparent-free-png 1_0: -4120592623216903278
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

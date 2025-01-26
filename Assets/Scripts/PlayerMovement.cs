@@ -139,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!PlayerHealth.dead)
+        if (!PlayerHealth.dead && !TrophyScript.winning)
         {
             PlayerMovementKeyboard();
             PlayerJump();

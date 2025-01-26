@@ -3,11 +3,15 @@ using UnityEngine;
 public class TrophyScript : MonoBehaviour
 {
     public GameObject winUI;
+    public static bool winning = false;
 
-
+    
     void WinScenario()
     {
-        PauseController.GlobalPauseGame();
+
+        GameObject player = GameObject.FindWithTag("Player");
+        player.transform.GetComponent<Animator>().Play("win");
+        winning = true;
         winUI.SetActive(true);
         AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.WIN_TRACK);
     }
