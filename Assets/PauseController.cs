@@ -39,23 +39,27 @@ public class PauseController : MonoBehaviour
 
     public void RestartGame()
     {
+        AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.MAIN_TRACK);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         ResumeGame();
     }
 
     public void LoadMainMenu()
     {
+        AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.MAIN_MENU_TRACK);
         ResumeGame();
         SceneManager.LoadScene("MainMenu");
     }
 
     public void LoadLevel(int level)
     {
+        AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.MAIN_TRACK);
         SceneManager.LoadScene("Level" + level);
     }
 
     public void NextLevel()
     {
+        AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.MAIN_TRACK);
         string curScene = SceneManager.GetActiveScene().name;
         int nextInd = SceneManager.GetActiveScene().buildIndex + 1;
         /*if (curScene == TagsEnum.Instance.ns_scene_level04)

@@ -27,7 +27,7 @@ public class PlayerHealth : MonoBehaviour
     {
         PauseController.GlobalPauseGame();
 //stiwi hon plz
-        WaitAfterHit(1f);
+        WaitAfterHit(3000f);
         AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.LOSE_TRACK);
         deathMenu.SetActive(true);
     }

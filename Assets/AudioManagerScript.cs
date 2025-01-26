@@ -29,7 +29,9 @@ public class AudioManagerScript : MonoBehaviour
     {
         MAIN_TRACK = 0,
         WIN_TRACK = 1,
-        LOSE_TRACK = 2
+        LOSE_TRACK = 2,
+        MAIN_MENU_TRACK = 3
+
     }
 
     public void PlayTrack(Audio_Ids id)
