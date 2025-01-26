@@ -144,8 +144,9 @@ public class PlayerMovement : MonoBehaviour
         GravitySwitch();
         AnimatePlayer();
 
-        //Vector3 currentRotation = transform.eulerAngles;
-        //transform.eulerAngles = new Vector3(currentRotation.x, 0, 0);
+        Quaternion fixedRotation = transform.rotation;
+        fixedRotation.z = 0; // Fix the Z-axis
+        transform.rotation = fixedRotation;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
