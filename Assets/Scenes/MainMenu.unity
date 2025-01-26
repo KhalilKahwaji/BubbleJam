@@ -132,6 +132,10 @@ PrefabInstance:
       value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 3568382565678263794, guid: d7efabafee629c041be2e761b4671ee2, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3568382565678263794, guid: d7efabafee629c041be2e761b4671ee2, type: 3}
       propertyPath: m_Resource
       value: 
       objectReference: {fileID: 8300000, guid: 0d5b6b54c4e607e44b0f997dfacf7147, type: 3}
