@@ -25,8 +25,8 @@ public class PlayerHealth : MonoBehaviour
 
     void DeathScenario()
     {
-        PauseController.GlobalPauseGame();
-//stiwi hon plz
+        //PauseController.GlobalPauseGame();
+        animator.Play("death");
         WaitAfterHit(3000f);
         AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.LOSE_TRACK);
         deathMenu.SetActive(true);
