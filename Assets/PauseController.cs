@@ -39,6 +39,8 @@ public class PauseController : MonoBehaviour
 
     public void RestartGame()
     {
+        PlayerHealth.dead = false;
+        Time.timeScale = 1f;
         AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.MAIN_TRACK);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         ResumeGame();
@@ -46,6 +48,8 @@ public class PauseController : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        Time.timeScale = 1f;
+        PlayerHealth.dead = false;
         AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.MAIN_MENU_TRACK);
         ResumeGame();
         SceneManager.LoadScene("MainMenu");
@@ -53,6 +57,9 @@ public class PauseController : MonoBehaviour
 
     public void LoadLevel(int level)
     {
+        PlayerHealth.dead = false;
+        Time.timeScale = 1f;
+
         if (level != 4)
             AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.MAIN_TRACK);
         else
@@ -63,6 +70,7 @@ public class PauseController : MonoBehaviour
 
     public void NextLevel()
     {
+        PlayerHealth.dead = false;
         AudioManagerScript.INSTANCE.PlayTrack(AudioManagerScript.Audio_Ids.MAIN_TRACK);
         string curScene = SceneManager.GetActiveScene().name;
         int nextInd = SceneManager.GetActiveScene().buildIndex + 1;

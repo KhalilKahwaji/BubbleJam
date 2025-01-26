@@ -66,7 +66,7 @@ public class PlayerHealth : MonoBehaviour
                 animator.Play("Damaged");
 
                 rb.linearVelocityX = 0;
-                rb.AddForce(new Vector2(7f * (sp.flipX ? 1 : -1), 0f), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(3.5f * (sp.flipX ? 1 : -1), 0f), ForceMode2D.Impulse);
 
 
                 StartCoroutine(WaitAfterHit(0.2f));
